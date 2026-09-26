@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_product_low_stock_tree" model="ir.ui.view">
+        <field name="name">product.low.stock.tree</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <tree string="Low Stock Products">
+                <field name="name"/>
+                <field name="qty_available"/>
+                <field name="minimum_stock_level"/>
+                <field name="is_low_stock"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_low_stock_products" model="ir.actions.act_window">
+        <field name="name">Stock Sense Alerts</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_low_stock', '=', True)]</field>
+    </record>
+
+    <menuitem id="menu_stock_sense_root" name="Stock Sense" sequence="10"/>
+    <menuitem id="menu_stock_sense_alerts" name="Low Stock Alerts"
+              parent="menu_stock_sense_root"
+              action="action_low_stock_products"/>
+</odoo>
